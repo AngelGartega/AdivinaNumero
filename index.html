@@ -1,26 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JUEGO DE ADIVINANZA</title>
+    <title>Juego de Adivinanza</title>
 </head>
 <body>
     <h1>Juego de Adivinanza</h1>
-    <p>Adivina el numero que estoy pensando del 1 al 10:</p>
-    <input type="number" id="numero-adivinanza"/>
-    <button onclick="">Adivinar</button>
+    <p>Adivina el número que estoy pensando del 1 al 10:</p>
+    <input type="number" id="numero-adivinanza" />
+    <button onclick="jugar()">Adivinar</button>
     <p id="resultado"></p>
+    
     <script>
-        function verificarAdivinanza(){
-            const numeroAleatorio = Math.floor(Mathrandom() *10)+1;
-            const numeroIngresado = parseInt(document.querySelector("#numero-adivinanza").value);
+        // Función que genera un número aleatorio entre 1 y 10
+        function generarNumeroAleatorio() {
+            return Math.floor(Math.random() * 10) + 1;
+        }
 
-            if(numeroIngresado == numeroAleatorio){
-                document.querySelector("#resultado").innerHTML = "Felicidades adivinaste";            
-            }else {
-                document.querySelector("#resultado").innerHTML = "Fallaste, el numero era: " + numeroAleatorio;
+        // Función que obtiene el número ingresado por el usuario
+        function obtenerNumeroIngresado() {
+            return parseInt(document.querySelector("#numero-adivinanza").value);
+        }
+
+        // Función que verifica si el número ingresado es correcto
+        function verificarAdivinanza(numeroAleatorio, numeroIngresado) {
+            if (numeroIngresado === numeroAleatorio) {
+                return "¡Felicidades, adivinaste!";
+            } else {
+                return "Fallaste, el número era: " + numeroAleatorio;
             }
+        }
+
+        // Función principal que orquesta el juego
+        function jugar() {
+            const numeroAleatorio = generarNumeroAleatorio();
+            const numeroIngresado = obtenerNumeroIngresado();
+
+            // Validación simple para asegurarse de que el número ingresado sea válido
+            if (isNaN(numeroIngresado) || numeroIngresado < 1 || numeroIngresado > 10) {
+                document.querySelector("#resultado").innerHTML = "Por favor, ingresa un número válido entre 1 y 10.";
+                return;
+            }
+
+            // Verificar la adivinanza
+            const resultado = verificarAdivinanza(numeroAleatorio, numeroIngresado);
+            mostrarResultado(resultado);
+        }
+
+        // Función que muestra el resultado en la página
+        function mostrarResultado(mensaje) {
+            document.querySelector("#resultado").innerHTML = mensaje;
         }
     </script>
 </body>
