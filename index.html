@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JUEGO DE ADIVINANZA</title>
+</head>
+<body>
+    <h1>Juego de Adivinanza</h1>
+    <p>Adivina el numero que estoy pensando del 1 al 10:</p>
+    <input type="number" id="numero-adivinanza"/>
+    <button onclick="">Adivinar</button>
+    <p id="resultado"></p>
+    <script>
+        function verificarAdivinanza(){
+            const numeroAleatorio = Math.floor(Mathrandom() *10)+1;
+            const numeroIngresado = parseInt(document.querySelector("#numero-adivinanza").value);
+
+            if(numeroIngresado == numeroAleatorio){
+                document.querySelector("#resultado").innerHTML = "Felicidades adivinaste";            
+            }else {
+                document.querySelector("#resultado").innerHTML = "Fallaste, el numero era: " + numeroAleatorio;
+            }
+        }
+    </script>
+</body>
+</html>
